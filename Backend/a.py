@@ -4,9 +4,7 @@ import requests
 
 #LOL
 # Define your Alpha Vantage API key
-API_KEY = 'HCC9Q7ACE7YQQYIX'
-
-print("Hello world")
+API_KEY = 'KA93VZDIT630ULUQ'
 
 # Function to get the current exchange rate
 def get_current_rate(from_currency, to_currency):
@@ -70,6 +68,18 @@ def main():
         print(f"{from_currency} to {to_currency} exchange rate one month ago: {old_rate}")
         change = ((current_rate - old_rate) / old_rate) * 100
         print(f"Change over the past month: {change:.2f}%")
+
+        if(change >= 10):
+            print("This month the currency exchange have fluctuated a lot")
+        elif (change > 5 and change < 10):
+            print("This month the currency exchange have fluctuated moderately")
+        elif (change < 5 and change >= 0):
+            print("This month the currency exchange have fluctuated a little")
+        elif (change < 0):
+            print("This month the base currency have gain value compared to the target currency")
+
+
+
     else:
         print("Failed to retrieve one or both exchange rates. Please check your inputs and API key.")
 
