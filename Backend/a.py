@@ -2,8 +2,11 @@ from alpha_vantage.foreignexchange import ForeignExchange
 from datetime import datetime, timedelta
 import requests
 
+#LOL
 # Define your Alpha Vantage API key
 API_KEY = 'HCC9Q7ACE7YQQYIX'
+
+print("Hello world")
 
 # Function to get the current exchange rate
 def get_current_rate(from_currency, to_currency):
