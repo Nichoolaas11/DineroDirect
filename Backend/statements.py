@@ -1,116 +1,83 @@
-import pdfplumber
-import pandas as pd
-import matplotlib.pyplot as plt
-from transformers import pipeline
 import re
-import os
+import pdfplumber
+from collections import defaultdict
 
-# Function to extract text from a PDF
-def extract_text_from_pdf(file_path):
+def read_pdf(file_path):
+    text = ""
     with pdfplumber.open(file_path) as pdf:
-        text = ""
         for page in pdf.pages:
-            text += page.extract_text() or ""  # Handle None for empty pages
+            text += page.extract_text() + "\n"
     return text
 
-# Function to use AI to parse transactions
-def parse_transactions_with_ai(text):
-    # Load pre-trained NLP pipeline for information extraction
-    nlp = pipeline("ner", model="dslim/bert-base-NER", tokenizer="dslim/bert-base-NER")
+def extract_chase_transactions(file_path):
+    text = read_pdf(file_path)
 
-    # Extract entities from text
-    entities = nlp(text)
-    
-    transactions = []
-    transaction = {}
+    # Split the text into lines
+    lines = text.splitlines()
+    payments = []
+    purchases = []
+    is_payments_section = False
+    is_purchases_section = False
 
-    for entity in entities:
-        if entity['entity'] == 'DATE':
-            transaction['date'] = entity['word']
-        elif entity['entity'] == 'MONEY':
-            amount = re.sub(r'[^\d\.\-]', '', entity['word'])
-            transaction['amount'] = float(amount)
-        elif entity['entity'] == 'MISC' and len(transaction) == 2:
-            transaction['description'] = entity['word']
-            transactions.append(transaction)
-            transaction = {}
+    for line in lines:
+        line = line.strip()
+        
+        if line.startswith("PAYMENTS AND OTHER CREDITS"):
+            is_payments_section = True
+            continue
+        elif line.startswith("PURCHASE"):
+            is_payments_section = False
+            is_purchases_section = True
+            continue
 
-    return transactions
+        if is_payments_section and line:
+            parts = line.split()
+            if len(parts) >= 3 and parts[1] == "Payment":
+                try:
+                    date = parts[0]
+                    amount = float(parts[-1])
+                    payments.append((date, -amount))  # Store as negative for payments
+                except ValueError:
+                    continue  # Skip any lines that don't have a valid amount
+        elif is_purchases_section and line:
+            match = re.match(r'(\d{2}/\d{2})\s+(.*)\s+([0-9]+\.[0-9]{2})', line)
+            if match:
+                date, description, amount = match.groups()
+                amount = float(amount)
+                purchases.append((date, description, round(amount)))  # Round purchases
 
-# Function to categorize a transaction based on the description
-def categorize_transaction(description):
-    categories = {
-        "food": ["RESTAURANT", "GROCERY", "FOOD"],
-        "gas": ["GAS", "PETROL"],
-        "entertainment": ["MOVIE", "CINEMA", "MUSIC"],
-        "travel": ["FLIGHT", "TICKET", "HOTEL", "AIRLINE"],
-        "healthcare": ["HOSPITAL", "CLINIC", "PHARMACY", "MEDICAL"],
-        "shopping": ["STORE", "SHOPPING", "MALL", "RETAIL"],
-        "utilities": ["ELECTRIC", "WATER", "GAS BILL", "UTILITY"],
-        "subscriptions": ["SUBSCRIPTION", "MONTHLY"],
-        "services": ["SERVICE", "FEE", "MAINTENANCE"],
-        "education": ["SCHOOL", "COLLEGE", "BOOK", "COURSE"],
-        "gifts": ["GIFT", "DONATION"],
-    }
-    
-    description_upper = description.upper()
-    for category, keywords in categories.items():
-        if any(keyword in description_upper for keyword in keywords):
-            return category
-    return "misc"  # Default category
+    print(f"Payments found: {payments}")  # Debug print
+    print(f"Purchases found: {purchases}")  # Debug print
 
-# Function to categorize all transactions
-def categorize_transactions(transactions):
-    for transaction in transactions:
-        transaction["category"] = categorize_transaction(transaction["description"])
-    return transactions
+    # Categorize purchases
+    categorized_purchases = categorize_purchases(purchases)
+    return payments, categorized_purchases
 
-# Function to summarize spending by category
-def summarize_categories(transactions):
-    df = pd.DataFrame(transactions)
-    summary = df.groupby('category')['amount'].sum()
-    total = summary.sum()
-    percentages = (summary / total) * 100
-    return percentages
+def categorize_purchases(purchases):
+    categories = defaultdict(float)
+    for date, description, amount in purchases:
+        # Example categorization logic
+        if "CHICK-FIL-A" in description:
+            categories["Food"] += amount
+        elif "WINGS" in description:
+            categories["Food"] += amount
+        elif "GAS" in description or "EXXON" in description:
+            categories["Gas"] += amount
+        else:
+            categories["Other"] += amount
+    return categories
 
-# Function to plot spending summary
-def plot_summary(summary):
-    summary.plot(kind='pie', autopct='%1.1f%%', startangle=140)
-    plt.title('Spending by Category')
-    plt.ylabel('')
-    plt.show()
-
-# Main function to orchestrate the workflow
 def main():
-    print("Starting the transaction analysis...")
-    
-    # Prompt user for the file path
-    file_path = input("Enter the full path to the bank statement PDF: ")
+    file_path = r'C:\Users\nicho\Documents\GitHub\DineroDirect\Backend\statements_pdf\F1FF59F0-0799-4042-A2B5-92C21E8213C6-list.pdf'
+    payments, categorized_purchases = extract_chase_transactions(file_path)
 
-    # Validate the path
-    if not os.path.exists(file_path):
-        print("The specified file path does not exist. Please try again.")
-        return
-    
-    # Extract text from the PDF
-    text = extract_text_from_pdf(file_path)
-    print("Text extracted from the PDF.")
+    print("\nPayments:")
+    for date, amount in payments:
+        print(f"{date}: ${abs(amount):.2f}")  # Print payments as positive values
 
-    # Parse and categorize transactions using AI
-    transactions = parse_transactions_with_ai(text)
-    print(f"Parsed {len(transactions)} transactions.")
-    
-    categorized_transactions = categorize_transactions(transactions)
-    
-    # Summarize spending and display the results
-    summary = summarize_categories(categorized_transactions)
-    print("\nSummary of spending by category:")
-    print(summary)
-    
-    # Plot the summary
-    plot_summary(summary)
+    print("\nCategorized Purchases:")
+    for category, total in categorized_purchases.items():
+        print(f"{category}: ${total:.2f}")
 
-    print(hello)
-# Entry point of the script
 if __name__ == "__main__":
     main()
