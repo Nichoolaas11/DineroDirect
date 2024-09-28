@@ -1,66 +1,95 @@
-from alpha_vantage.foreignexchange import ForeignExchange
-from datetime import datetime, timedelta
 import requests
+from datetime import datetime, timedelta
 
-#LOL
-# Define your Alpha Vantage API key
-API_KEY = 'KA93VZDIT630ULUQ'
+# Replace 'YOUR_API_KEY' with your actual ExchangeRate-API key
+API_KEY = '7753d6f27210c76adbea9654'
 
 # Function to get the current exchange rate
 def get_current_rate(from_currency, to_currency):
-    fx = ForeignExchange(key=API_KEY)
+    url = f'https://v6.exchangerate-api.com/v6/{API_KEY}/latest/{from_currency}'
     try:
-        # Get real-time exchange rate data
-        data, _ = fx.get_currency_exchange_rate(from_currency, to_currency)
-        return float(data['5. Exchange Rate'])  # Extract and return the exchange rate
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        data = response.json()
+        
+        # Check if the request was successful
+        if data['result'] == 'success':
+            return data['conversion_rates'][to_currency]
+        else:
+            print(f"Error: Unable to retrieve rates. Response: {data}")
+            return None
     except Exception as e:
         print(f"Error fetching current exchange rate: {e}")
         return None
 
 # Function to get the historical exchange rate for a specific date
-def get_historical_rate(from_currency, to_currency, date):
-    # Alpha Vantage does not directly support date-specific historical data in the free tier,
-    # so we use the daily time series endpoint and select the date manually.
-    fx = ForeignExchange(key=API_KEY)
-    url = f'https://www.alphavantage.co/query'
-    params = {
-        'function': 'FX_DAILY',
-        'from_symbol': from_currency,
-        'to_symbol': to_currency,
-        'apikey': API_KEY
-    }
+def get_historical_rate(from_currency, to_currency, year, month, day):
+    # Use the correct endpoint for historical data
+    url = f'https://v6.exchangerate-api.com/v6/{API_KEY}/history/{from_currency}/{year}/{month}/{day}'
     try:
-        # Fetch the daily historical data
-        response = requests.get(url, params=params)
-        response.raise_for_status()
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
         data = response.json()
-
-        # Access the "Time Series FX (Daily)" field in the returned JSON
-        time_series = data.get('Time Series FX (Daily)', {})
-        if date in time_series:
-            return float(time_series[date]['4. close'])  # Extract the closing rate for the date
+        
+        # Check if the request was successful
+        if data['result'] == 'success':
+            return data['conversion_rates'][to_currency]
         else:
-            print(f"Error: No data available for {date}")
+            print(f"Error: Unable to retrieve historical rates. Response: {data}")
             return None
     except Exception as e:
         print(f"Error fetching historical exchange rate: {e}")
         return None
 
+# Function to validate if a currency code is valid using the ExchangeRate-API
+def is_valid_currency(currency_code):
+    url = f'https://v6.exchangerate-api.com/v6/{API_KEY}/codes'
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        if data['result'] == 'success':
+            valid_codes = [code[0] for code in data['supported_codes']]
+            return currency_code in valid_codes
+        else:
+            print(f"Error: Unable to fetch supported currency codes. Response: {data}")
+            return False
+    except Exception as e:
+        print(f"Error fetching supported currency codes: {e}")
+        return False
+
 def main():
-    # Get user input for base and target currency codes
-    from_currency = input("Enter the base currency code (e.g., USD): ").upper()
-    to_currency = input("Enter the target currency code (e.g., EUR): ").upper()
+    # Get and validate the base currency code
+    while True:
+        from_currency = input("Enter the base currency code (e.g., USD): ").upper()
+        if is_valid_currency(from_currency):
+            break
+        else:
+            print(f"'{from_currency}' is not a valid currency code. Please try again.")
+
+    # Get and validate the target currency code
+    while True:
+        to_currency = input("Enter the target currency code (e.g., EUR): ").upper()
+        if from_currency == to_currency:
+            print("The target currency cannot be the same as the base currency. Please enter a different target currency.")
+        elif is_valid_currency(to_currency):
+            break
+        else:
+            print(f"'{to_currency}' is not a valid currency code. Please try again.")
 
     # Get today's date and the date one month ago in the required format
     today = datetime.today().strftime('%Y-%m-%d')
-    one_month_ago = (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
+    one_month_ago = datetime.today() - timedelta(days=30)
+    one_month_ago_year = one_month_ago.year
+    one_month_ago_month = one_month_ago.month
+    one_month_ago_day = one_month_ago.day
 
     # Fetch current and historical exchange rates
     print(f"Fetching current exchange rate for {from_currency} to {to_currency}...")
     current_rate = get_current_rate(from_currency, to_currency)
 
-    print(f"Fetching exchange rate from one month ago ({one_month_ago}) for {from_currency} to {to_currency}...")
-    old_rate = get_historical_rate(from_currency, to_currency, one_month_ago)
+    print(f"Fetching exchange rate from one month ago ({one_month_ago_year}-{one_month_ago_month:02d}-{one_month_ago_day:02d}) for {from_currency} to {to_currency}...")
+    old_rate = get_historical_rate(from_currency, to_currency, one_month_ago_year, one_month_ago_month, one_month_ago_day)
 
     # Display the results
     if current_rate and old_rate:
@@ -69,17 +98,15 @@ def main():
         change = ((current_rate - old_rate) / old_rate) * 100
         print(f"Change over the past month: {change:.2f}%")
 
-        if(change >= 10):
-            print("This month the currency exchange have fluctuated a lot")
-        elif (change > 5 and change < 10):
-            print("This month the currency exchange have fluctuated moderately")
-        elif (change < 5 and change >= 0):
-            print("This month the currency exchange have fluctuated a little")
-        elif (change < 0):
-            print("This month the base currency have gain value compared to the target currency")
-
-
-
+        # Print interpretation of the fluctuation
+        if change >= 10:
+            print("This month the currency exchange has fluctuated a lot.")
+        elif 5 < change < 10:
+            print("This month the currency exchange has fluctuated moderately.")
+        elif 0 <= change <= 5:
+            print("This month the currency exchange has fluctuated a little.")
+        elif change < 0:
+            print("This month the base currency has gained value compared to the target currency.")
     else:
         print("Failed to retrieve one or both exchange rates. Please check your inputs and API key.")
 
