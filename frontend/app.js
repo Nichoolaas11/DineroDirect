@@ -20,21 +20,6 @@ buttons.forEach(button => {
     });
 });
 
-// Form Validation
-const form = document.getElementById('contactForm');
-if (form) {
-    form.addEventListener('submit', function (e) {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        if (name === '' || email === '' || message === '') {
-            e.preventDefault(); // Stop form submission
-            alert('Please fill in all fields');
-        }
-    });
-}
-
 // Back to Top Button
 const backToTopButton = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
@@ -49,17 +34,6 @@ backToTopButton.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
-    });
-});
-
-// Reveal Service Details on Hover
-const serviceItems = document.querySelectorAll('.service-item');
-serviceItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.querySelector('p').style.display = 'block'; // Show details
-    });
-    item.addEventListener('mouseleave', () => {
-        item.querySelector('p').style.display = 'none'; // Hide details
     });
 });
 
