@@ -11,7 +11,7 @@ body, html {
 }
 
 h1, h2, h3, p {
-    margin: 0;
+    margin: 10px 0;
     padding: 0;
 }
 
@@ -25,9 +25,9 @@ h1, h2, h3, p {
 /* Header */
 header {
     background-color: #b8e4c9; /* Soft pastel green */
-    padding: 20px 0;
+    padding: 0px 0;
     text-align: center;
-    border-bottom: 2px solid #a1d1b7; /* Slightly darker for contrast */
+    border-bottom: 20px solid #a1d1b7; /* Slightly darker for contrast */
 }
 
 header h1 {
