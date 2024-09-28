@@ -204,23 +204,11 @@ footer p {
     transform: scale(1.05); /* Slight enlarge on hover */
 }
 
-/* Contact Section (optional) */
-section#contact {
-    padding: 50px 0;
-    background-color: #d8f1e0; /* Matching soft green background */
-    border-radius: 10px;
-}
 
-section#contact h2 {
-    font-size: 30px;
-    color: #3b584f;
-    margin-bottom: 20px;
-}
 
-section#contact p {
-    font-size: 18px;
-    color: #555;
-}
+
+
+
 /* Preloader Style */
 #preloader {
     position: fixed;
