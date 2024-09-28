@@ -110,6 +110,7 @@ def main():
     # Plot the summary
     plot_summary(summary)
 
+    print(hello)
 # Entry point of the script
 if __name__ == "__main__":
     main()
