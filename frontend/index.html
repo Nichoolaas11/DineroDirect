@@ -17,6 +17,10 @@
     <meta name="description" content="Brief description of your website">
 </head>
 <body>
+        <!-- Preloader -->
+        <div id="preloader" style="position: fixed; width: 100%; height: 100%; background-color: #ffffff; display: flex; justify-content: center; align-items: center; z-index: 9999;">
+            <div class="loader" style="border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 2s linear infinite;"></div>
+        </div>    
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -84,6 +88,11 @@
         </div>
     </footer>
 
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; z-index: 1000;">
+    Top
+    </button>
     <!-- JavaScript File -->
     <script src="app.js"></script>
 </body>
