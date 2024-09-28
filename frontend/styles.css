@@ -1,0 +1,223 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('images/Image.jpg'); /* Path to the local image */
+    background-size: cover;  /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: #bcdbd1; /* Text color for readability */
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background-color: #b8e4c9; /* Soft pastel green */
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #a1d1b7; /* Slightly darker for contrast */
+}
+
+header h1 {
+    color: #2f4f4f; /* Darker green for the title */
+    font-size: 36px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+header nav ul li a {
+    color: #2f4f4f;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #fff;
+    background-color: #7bbf91; /* Change on hover */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Main Content */
+main {
+    margin: 50px 0;
+    text-align: center;
+}
+
+/* Hero Section for Index Page */
+.hero {
+    background-color: #7bbf91; /* Soft green section */
+    padding: 50px 0;
+    border-radius: 10px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    color: #2f4f4f;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Services Section */
+section#services {
+    padding: 50px 0;
+}
+
+section#services h2 {
+    font-size: 30px;
+    color: #bcdbd1;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* Service Cards */
+.service-item {
+    display: inline-block;
+    width: 30%;
+    background-color: #e0f5e9; /* Soft green card background */
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.service-item:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-item h3 {
+    color: #2f4f4f;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: #7bbf91; /* Soft pastel green */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5ba87c; /* Darker green on hover */
+    transform: scale(1.05); /* Slight enlarge on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #b8e4c9; /* Same pastel green as header */
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #a1d1b7;
+}
+
+footer p {
+    color: #2f4f4f;
+    font-size: 14px;
+}
+
+/* Specific Styles for Service Pages */
+.service-card {
+    display: inline-block;
+    width: 30%;
+    background-color: #e0f5e9; /* Soft green card background */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.service-card:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-card h3 {
+    color: #2f4f4f;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.service-card .btn {
+    display: inline-block;
+    background-color: #7bbf91; /* Button inside service cards */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.service-card .btn:hover {
+    background-color: #5ba87c;
+    transform: scale(1.05); /* Slight enlarge on hover */
+}
+
+/* Contact Section (optional) */
+section#contact {
+    padding: 50px 0;
+    background-color: #d8f1e0; /* Matching soft green background */
+    border-radius: 10px;
+}
+
+section#contact h2 {
+    font-size: 30px;
+    color: #3b584f;
+    margin-bottom: 20px;
+}
+
+section#contact p {
+    font-size: 18px;
+    color: #555;
+}
