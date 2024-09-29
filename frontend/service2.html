@@ -29,6 +29,8 @@
     </div>
 
     <script>
+        let chart; // Declare the chart variable outside of the function
+
         document.getElementById("budget-form").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent form submission
 
@@ -38,14 +40,14 @@
         });
 
         function createBudget(yearlySalary) {
-            const savingsPercentage = yearlySalary < 30000 ? 0 : 0.10;
+            const savingsPercentage = yearlySalary < 30000 ? 0 : 0.10/12;
             const budgetBreakdown = {
-                Housing: yearlySalary * 0.30,
-                Food: yearlySalary * 0.15,
-                Health: yearlySalary * 0.10,
-                Transportation: yearlySalary * 0.10,
-                Entertainment: yearlySalary * 0.05,
-                Miscellaneous: yearlySalary * 0.05,
+                Housing: yearlySalary * 0.30/12,
+                Food: yearlySalary * 0.15/12,
+                Health: yearlySalary * 0.10/12,
+                Transportation: yearlySalary * 0.10/12,
+                Entertainment: yearlySalary * 0.05/12,
+                Miscellaneous: yearlySalary * 0.05/12,
                 Savings: yearlySalary * savingsPercentage,
             };
             return budgetBreakdown;
@@ -53,7 +55,7 @@
 
         function displayBudget(budget) {
             // Display budget in text form
-            let output = "<h2>Your Expense Budget:</h2><ul>";
+            let output = "<h2>Your Monthly Expense Budget:</h2><ul>";
             for (const [category, amount] of Object.entries(budget)) {
                 output += `<li>${category}: $${amount.toFixed(2)}</li>`;
             }
@@ -64,9 +66,14 @@
             const labels = Object.keys(budget);
             const data = Object.values(budget);
 
+            // If a chart already exists, destroy it before creating a new one
+            if (chart) {
+                chart.destroy(); // Destroy the old chart
+            }
+
             // Create Pie Chart
             const ctx = document.getElementById("budget-chart").getContext("2d");
-            const chart = new Chart(ctx, {
+            chart = new Chart(ctx, { // Assign the new chart to the variable
                 type: 'pie',
                 data: {
                     labels: labels,
