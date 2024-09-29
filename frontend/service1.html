@@ -3,36 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service 1 - Your Website</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Currency Comparison and Monitoring</title>
     <link rel="stylesheet" href="styles.css">
-    <!--Favicon-->
-    <link rel="icon" type="image/png" href="images/dinero_direct_logo.png"> <!-- PNG for modern browsers -->
-    <link rel="icon" href="images/dinero_direct_logo.ico" type="image/x-icon"> <!-- ICO for older browsers -->
+    <script src="app.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Your Website Name</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="service1.html">Service 1</a></li>
-                    <li><a href="service2.html">Service 2</a></li>
-                    <li><a href="Contact_Us.html">Contact Us</a></li>
-                </ul>
-            </nav>
+    <div class="container">
+        <h1>Currency Comparison and Monitoring</h1>
+
+        <!-- Section for Comparing Rates -->
+        <div class="section">
+            <h2>Compare Current Rate with One Month Ago</h2>
+            <form id="compare-form">
+                <label for="from_currency">From Currency:</label>
+                <input type="text" id="from_currency" name="from_currency" required placeholder="e.g., USD">
+
+                <label for="to_currency">To Currency:</label>
+                <input type="text" id="to_currency" name="to_currency" required placeholder="e.g., EUR">
+
+                <button type="submit">Compare</button>
+            </form>
+            <hr>
+            <!-- Result Div for Compare -->
+            <div id="compare-result" class="result"></div>
         </div>
-    </header>
 
-    <main>
-        <section>
-            <h2>Service 1</h2>
-            <p>Details about Service 1 go here...</p>
-        </section>
-    </main>
+        <!-- Section for Monitoring Currencies -->
+        <div class="section">
+            <h2>Monitor a Currency</h2>
+            <form id="monitor-form">
+                <label for="monitor_from_currency">From Currency:</label>
+                <input type="text" id="monitor_from_currency" name="from_currency" required placeholder="e.g., USD">
 
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
+                <label for="monitor_to_currency">To Currency:</label>
+                <input type="text" id="monitor_to_currency" name="to_currency" required placeholder="e.g., EUR">
+
+                <label for="monitor_value">Monitoring Value (Optional):</label>
+                <input type="text" id="monitor_value" name="monitor_value" placeholder="e.g., 0.85">
+
+                <button type="submit">Monitor</button>
+            </form>
+            <hr>
+            <!-- Result Div for Monitor -->
+            <div id="monitor-result" class="result"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>

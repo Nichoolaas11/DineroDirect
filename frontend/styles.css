@@ -3,67 +3,122 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-image: url('images/Image3.jpg'); /* Path to the local image */
+    height: 100%;
+    background-image: url('f.png'); /* Path to the background image */
     background-size: cover;  /* Ensures the image covers the entire background */
     background-position: center; /* Centers the background image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     color: #bcdbd1; /* Text color for readability */
 }
 
-h1, h2, h3, p {
-    margin: 10px 0;
-    padding: 0;
-}
-
 /* Container */
 .container {
-    width: 80%;
-    margin: 0 auto;
+    max-width: 800px; /* Set the maximum width of the container */
+    margin: 50px auto; /* Center the container */
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
-/* Header */
-header {
-    background-color: #b8e4c9; /* Soft pastel green */
-    padding: 0px 0;
+/* Section styles to separate comparison and monitoring sections */
+.section {
+    margin-bottom: 40px;
+}
+
+/* Heading styles */
+h1, h2 {
     text-align: center;
-    border-bottom: 20px solid #a1d1b7; /* Slightly darker for contrast */
+    color: #333;
 }
 
-header h1 {
-    color: #2f4f4f; /* Darker green for the title */
-    font-size: 36px;
-}
-
-header nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-header nav ul li {
+/* Label styles for form inputs */
+label {
     display: inline-block;
-    margin-right: 15px;
+    width: 150px; /* Set label width for alignment */
+    margin-top: 10px;
+    color: #333;
 }
 
-header nav ul li a {
-    color: #2f4f4f;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
-    transition: color 0.3s ease;
+/* Input field styles */
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: calc(100% - 160px); /* Make inputs take up the remaining space next to labels */
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-header nav ul li a:hover {
-    color: #fff;
-    background-color: #7bbf91; /* Change on hover */
-    padding: 5px 10px;
-    border-radius: 5px;
+/* Button styles */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-/* Main Content */
-main {
-    margin: 50px 0;
-    text-align: center;
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Result display box styles */
+.result {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Additional form and result separation for visual clarity */
+hr {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/* Optional additional styling for background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Optional dark overlay for better text visibility */
+    z-index: -1;
+}
+
+/* Ensure input elements align correctly within the forms */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Adjust input and button widths to fit within the form */
+input[type="text"] {
+    flex: 1 1 auto;
+    margin: 5px;
+}
+
+button {
+    flex: 0 1 auto;
+}
+
+/* Style the form and result container to ensure proper spacing */
+form, .result {
+    margin-bottom: 20px;
+}
+
+/* Improve the overall layout of the form and its elements */
+form label, form input, form button {
+    margin: 10px 5px;
 }
 
 /* Hero Section for Index Page */
@@ -84,48 +139,6 @@ main {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px 0;
-}
-
-/* Services Section */
-section#services {
-    padding: 50px 0;
-}
-
-section#services h2 {
-    font-size: 30px;
-    color: #bcdbd1;
-    margin-bottom: 40px;
-    font-weight: bold;
-}
-
-/* Service Cards */
-.service-item {
-    display: inline-block;
-    width: 30%;
-    background-color: #e0f5e9; /* Soft green card background */
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
-
-.service-item:hover {
-    transform: translateY(-10px); /* Slight lift on hover */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.service-item h3 {
-    color: #2f4f4f;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.service-item p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 20px;
 }
 
 /* Buttons */
@@ -158,7 +171,63 @@ footer p {
     font-size: 14px;
 }
 
+/* Preloader Style */
+#preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #5ba87c; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Specific Styles for Service Pages */
+.service-item {
+    display: inline-block;
+    width: 30%;
+    background-color: #e0f5e9; /* Soft green card background */
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.service-item:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-item h3 {
+    color: #2f4f4f;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
 .service-card {
     display: inline-block;
     width: 30%;
@@ -202,36 +271,4 @@ footer p {
 .service-card .btn:hover {
     background-color: #5ba87c;
     transform: scale(1.05); /* Slight enlarge on hover */
-}
-
-/* Preloader Style */
-#preloader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #5ba87c; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-}
-
-/* Keyframes for spinning animation */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-#about p.about-text{
-    font-size: 15px; /* Adjust the size of font */
-    text-align: center; /* Centers the text horizontally */
-    color: #15caa0;
 }
