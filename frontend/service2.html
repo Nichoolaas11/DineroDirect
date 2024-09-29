@@ -3,12 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Budget</title>
+    <title>Expense Budget Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
     <script src="app.js" defer></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #F0FFF0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #8FBC8F;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #8FBC8F;
+            padding: 10px 0;
+            margin-bottom: 30px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            text-align: center;
+            margin: 0 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #7aa67a;
+        }
+
+        /* Form Styling */
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #d4edda;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #8FBC8F;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #7aa67a;
+        }
+
+        /* Output Styling */
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #d4edda;
+            margin: 20px 0;
+        }
+
+        /* Chart Styling */
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="service1.html">Currency Converter and Monitor</a>
+        <a href="Contact_Us.html">Contact Us</a>
+    </div>
+
     <div class="container">
         <h1>Expense Budget Calculator</h1>
 
@@ -40,14 +153,14 @@
         });
 
         function createBudget(yearlySalary) {
-            const savingsPercentage = yearlySalary < 30000 ? 0 : 0.10/12;
+            const savingsPercentage = yearlySalary < 30000 ? 0 : 0.10 / 12;
             const budgetBreakdown = {
-                Housing: yearlySalary * 0.30/12,
-                Food: yearlySalary * 0.15/12,
-                Health: yearlySalary * 0.10/12,
-                Transportation: yearlySalary * 0.10/12,
-                Entertainment: yearlySalary * 0.05/12,
-                Miscellaneous: yearlySalary * 0.05/12,
+                Housing: yearlySalary * 0.30 / 12,
+                Food: yearlySalary * 0.15 / 12,
+                Health: yearlySalary * 0.10 / 12,
+                Transportation: yearlySalary * 0.10 / 12,
+                Entertainment: yearlySalary * 0.05 / 12,
+                Miscellaneous: yearlySalary * 0.05 / 12,
                 Savings: yearlySalary * savingsPercentage,
             };
             return budgetBreakdown;
@@ -80,13 +193,13 @@
                     datasets: [{
                         data: data,
                         backgroundColor: [
-                            '#FF6384',
-                            '#36A2EB',
-                            '#FFCE56',
-                            '#4BC0C0',
-                            '#9966FF',
-                            '#FF9F40',
-                            '#FF5733'
+                            '#FFB6C1',
+                            '#77DD77',
+                            '#FDFD96',
+                            '#AEC6CF',
+                            '#FFB347',
+                            '#FFD1DC',
+                            '#B39EB5'
                         ]
                     }]
                 },

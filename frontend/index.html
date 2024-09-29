@@ -8,74 +8,112 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Include any necessary fonts or icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto">
-    <!--Favicon-->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/dinero_direct_logo.png"> <!-- PNG for modern browsers -->
     <link rel="icon" href="images/dinero_direct_logo.ico" type="image/x-icon"> <!-- ICO for older browsers -->
     <!-- Apple Touch Icon for Safari and iOS -->
     <link rel="apple-touch-icon" href="images/dinero_direct_logo.png">
     <!-- Meta description for SEO -->
     <meta name="description" content="Dinero Direct is your home for easy international money transactions. Whether you want to send a little something to la vieja or for business purposes, we at Dinero Direct commit ourselves to making your experience a simple one!">
+    <style>
+        /* Centering buttons and header */
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        header {
+            text-align: center;
+            background-image: url(images/Image3.jpg) ;
+            padding: 20px;
+        }
+        .header-buttons {
+            margin: 20px 0;
+        }
+        .header-buttons .btn {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #8FBC8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .hero, .services, .about {
+            text-align: center;
+        }
+        .service-item {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #8FBC8F;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header Section -->
     <header>
-        <div class="container">
-            <h1>Dinero Direct</h1>
-            <nav>
-                <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="Contact_Us.html">Contact Us</a></li>
-                </ul>
-            </nav>
+        <h1 style="color: #8FBC8F;">Dinero Direct</h1>
+        <div class="header-buttons">
+            <a href="service1.html" class="btn">Currency Converter and Monitor</a>
+            <a href="service2.html" class="btn">Budget Maker</a>
+            <a href="Contact_Us.html" class="btn">Contact Us</a>
         </div>
     </header>
 
     <!-- Main Content Section -->
     <main>
         <!-- Section 1: Hero Banner or Intro -->
-        <section id="home" class="hero">
-            <h2>Welcome to the community</h2>
+        <section id="home" class="hero" style="background-color: #E6F4E6;">
+            <h2 style="color: #8FBC8F;">Welcome to the community</h2>
             <p>At Dinero Direct, we believe in the power of financial freedom to transform lives.</p>
-            <a href="#about" class="btn">Learn More</a>
+            <a href="#about" class="btn" style="background-color: #8FBC8F; color: #fff;">Learn More</a>
         </section>
 
         <!-- Section 2: Services or Features -->
-        <section id="services" class="services">
-            <h2>Our Services</h2>
+        <section id="services" class="services" style="background-color: #F0FFF0;">
+            <h2 style="color: #8FBC8F;">Our Services</h2>
             <div class="service-item">
-                <h3>Service 1</h3>
-                <p>Details about Service 1.</p>
-                <a href="service1.html" class="btn">Learn More</a> <!-- Link to Service 1 -->
-             </div>
-             <div class="service-item">
-                <h3>Service 2</h3>
-                <p>Details about Service 2.</p>
-                <a href="service2.html" class="btn">Learn More</a> <!-- Link to Service 2 -->
-             </div>
-             <div class="service-item">
-                <h3>Contact the Team</h3>
-                <p>Details about Contact.</p>
-                <a href="Contact_Us.html" class="btn">Learn More</a> <!-- Link to Contact Us -->
+                <h3 style="color: #8FBC8F;">Money Converter and Monitor</h3>
+                <p>Great tool for money comparison.</p>
+                <a href="service1.html" class="btn" style="background-color: #8FBC8F; color: #fff;">Learn More</a> <!-- Link to Service 1 -->
+            </div>
+            <div class="service-item">
+                <h3 style="color: #8FBC8F;">Budget Maker</h3>
+                <p>Perfect for budgeting right.</p>
+                <a href="service2.html" class="btn" style="background-color: #8FBC8F; color: #fff;">Learn More</a> <!-- Link to Service 2 -->
+            </div>
+            <div class="service-item">
+                <h3 style="color: #8FBC8F;">Contact the Team</h3>
+                <p>Talk to us about your experience.</p>
+                <a href="Contact_Us.html" class="btn" style="background-color: #8FBC8F; color: #fff;">Learn More</a> <!-- Link to Contact Us -->
             </div>
         </section>
+
         <!-- Section 3: About Us -->
-            <section id="about" class="about">
-                <h2>About Us</h2>
-                <p class="about-text"> Our mission is to unite the diverse communities of Latin America (LATAM) by providing accessible and 
-                    innovative financial solutions. We understand the unique challenges faced by individuals and businesses
-                    in our region, and we are committed to empowering them with the tools and knowledge they need to achieve financial independence.
-                    By fostering a culture of inclusivity and support, we aim to break down barriers and create opportunities for 
-                    growth and prosperity across LATAM. Join us on this journey towards a brighter, more connected future, where financial freedom is within everyone's reach.</p>
-            </section>
+        <section id="about" class="about" style="background-color: #E6F4E6;">
+            <h2 style="color: #0e4d0e;">About Us</h2>
+            <p class="about-text" style="color: #0e4d0e;"> Our mission is to unite the diverse communities of Latin America (LATAM) by providing accessible and 
+                innovative financial solutions. We understand the unique challenges faced by individuals and businesses
+                in our region, and we are committed to empowering them with the tools and knowledge they need to achieve financial independence.
+                By fostering a culture of inclusivity and support, we aim to break down barriers and create opportunities for 
+                growth and prosperity across LATAM. Join us on this journey towards a brighter, more connected future, where financial freedom is within everyone's reach.</p>
+        </section>
     </main>
 
     <!-- Footer Section -->
-    <footer>
+    <footer style="background-color: #8FBC8F;">
         <div class="container">
             <p>&copy; 2024 DineroDirect. All rights reserved.</p>
             <ul>
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="#terms">Terms of Service</a></li>
+                <li><a href="#privacy" style="color: #fff;">Privacy Policy</a></li>
+                <li><a href="#terms" style="color: #fff;">Terms of Service</a></li>
             </ul>
         </div>
     </footer>
