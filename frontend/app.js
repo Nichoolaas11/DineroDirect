@@ -46,7 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Send a POST request to the Flask backend to monitor the currency pair
         fetch('http://127.0.0.1:5000/monitor', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({ from_currency: fromCurrency, to_currency: toCurrency, monitor_value: monitorValue })
         })
         .then(response => response.json()) // Parse the JSON response

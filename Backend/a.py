@@ -71,5 +71,50 @@ def compare_current_and_month_ago_rate():
     else:
         return jsonify({'error': 'Failed to retrieve one or both exchange rates'}), 400
 
+# Route to monitor a currency based on conditions set by the user
+@app.route('/monitor', methods=['POST', 'OPTIONS'])
+def monitor_currencies_with_conditions():
+    if request.method == 'OPTIONS':
+        return jsonify({'message': 'CORS preflight request successful'}), 200
+
+    data = request.json
+    from_currency = data.get('from_currency')
+    to_currency = data.get('to_currency')
+    monitor_value = data.get('monitor_value', None)  # Optional, default is None
+
+    # Validate input currencies
+    if not from_currency or not to_currency:
+        return jsonify({'error': 'Please provide both from_currency and to_currency'}), 400
+
+    # Fetch the current rate
+    current_rate = get_current_rate(from_currency, to_currency)
+    if not current_rate:
+        return jsonify({'error': 'Unable to fetch the current rate'}), 400
+
+    # Use the current rate if no custom value is provided
+    if not monitor_value:
+        monitor_value = current_rate
+
+    # Calculate the percentage change
+    percentage_change = abs((current_rate - float(monitor_value)) / float(monitor_value)) * 100
+
+    if percentage_change >= 5:
+        direction = "up" if current_rate > float(monitor_value) else "down"
+        return jsonify({
+            'alert': True,
+            'current_rate': current_rate,
+            'monitor_value': float(monitor_value),
+            'percentage_change': round(percentage_change, 2),
+            'message': f"Alert: The currency has experienced a significant {direction} change of {percentage_change:.2f}%. Current rate: {current_rate}"
+        })
+    else:
+        return jsonify({
+            'alert': False,
+            'current_rate': current_rate,
+            'monitor_value': float(monitor_value),
+            'percentage_change': round(percentage_change, 2),
+            'message': f"The currency is stable. Current change is within 5% of the monitored value."
+        })
+
 if __name__ == '__main__':
     app.run(debug=True)
