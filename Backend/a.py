@@ -6,8 +6,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 CORS(app)  # Enable CORS on the entire Flask app
 
-# Replace with your actual ExchangeRate-API key
-API_KEY = '7753d6f27210c76adbea9654'  # Insert your actual API key here
+API_KEY = '7753d6f27210c76adbea9654' 
 
 # Function to get the current exchange rate
 def get_current_rate(from_currency, to_currency):
