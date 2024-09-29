@@ -3,36 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service 2 - Your Website</title>
+    <title>Expense Budget</title>
     <link rel="stylesheet" href="styles.css">
-    <!--Favicon-->
-    <link rel="icon" type="image/png" href="images/dinero_direct_logo.png"> <!-- PNG for modern browsers -->
-    <link rel="icon" href="images/dinero_direct_logo.ico" type="image/x-icon"> <!-- ICO for older browsers -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <script src="app.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Your Website Name</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="service1.html">Service 1</a></li>
-                    <li><a href="service2.html">Service 2</a></li>
-                    <li><a href="Contact_Us.html">Contact Us</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <h1>Expense Budget Calculator</h1>
 
-    <main>
-        <section>
-            <h2>Service 2</h2>
-            <p>Details about Service 2 go here...</p>
-        </section>
-    </main>
+        <!-- Form for Yearly Salary Input -->
+        <form id="budget-form">
+            <label for="yearly_salary">Enter Yearly Salary:</label>
+            <input type="number" id="yearly_salary" name="yearly_salary" required placeholder="e.g., 50000">
+            <button type="submit">Calculate Budget</button>
+        </form>
 
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
+        <hr>
+
+        <!-- Output Section -->
+        <div id="budget-output" class="result"></div>
+
+        <!-- Canvas for Pie Chart -->
+        <canvas id="budget-chart" width="400" height="400" style="display: none;"></canvas>
+    </div>
+
+    <script>
+        document.getElementById("budget-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const yearlySalary = parseFloat(document.getElementById("yearly_salary").value);
+            const budget = createBudget(yearlySalary);
+            displayBudget(budget);
+        });
+
+        function createBudget(yearlySalary) {
+            const savingsPercentage = yearlySalary < 30000 ? 0 : 0.10;
+            const budgetBreakdown = {
+                Housing: yearlySalary * 0.30,
+                Food: yearlySalary * 0.15,
+                Health: yearlySalary * 0.10,
+                Transportation: yearlySalary * 0.10,
+                Entertainment: yearlySalary * 0.05,
+                Miscellaneous: yearlySalary * 0.05,
+                Savings: yearlySalary * savingsPercentage,
+            };
+            return budgetBreakdown;
+        }
+
+        function displayBudget(budget) {
+            // Display budget in text form
+            let output = "<h2>Your Expense Budget:</h2><ul>";
+            for (const [category, amount] of Object.entries(budget)) {
+                output += `<li>${category}: $${amount.toFixed(2)}</li>`;
+            }
+            output += "</ul>";
+            document.getElementById("budget-output").innerHTML = output;
+
+            // Prepare data for pie chart
+            const labels = Object.keys(budget);
+            const data = Object.values(budget);
+
+            // Create Pie Chart
+            const ctx = document.getElementById("budget-chart").getContext("2d");
+            const chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0',
+                            '#9966FF',
+                            '#FF9F40',
+                            '#FF5733'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Expense Budget Distribution'
+                        }
+                    }
+                }
+            });
+
+            document.getElementById("budget-chart").style.display = "block"; // Show the chart
+        }
+    </script>
 </body>
 </html>

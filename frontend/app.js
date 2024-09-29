@@ -63,4 +63,34 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error:', error)); // Handle any errors that occur
     });
+
+    // Handle form submissions for uploading bank statement
+    const uploadForm = document.getElementById('upload-form');
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Create a FormData object to send the file
+            const formData = new FormData();
+            const fileInput = document.getElementById('bank_statement');
+            formData.append('bank_statement', fileInput.files[0]); // Append the selected file
+
+            // Send a POST request to the Flask backend to process the bank statement
+            fetch('http://127.0.0.1:5000/process_statement', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // Parse the JSON response
+            .then(data => {
+                const resultDiv = document.getElementById('upload-result'); // Reference to the result div
+                if (data.error) {
+                    resultDiv.innerHTML = `<strong>Error:</strong> ${data.error}`; // Display error message
+                } else {
+                    // Display the processed result
+                    resultDiv.innerHTML = `<strong>Analysis Result:</strong><br>${data.analysis}`; // Adjust based on your data structure
+                }
+            })
+            .catch(error => console.error('Error:', error)); // Handle any errors that occur
+        });
+    }
 });
