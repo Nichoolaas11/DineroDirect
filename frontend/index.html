@@ -4,22 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dinero Direct</title>
-    <!-- Link to an external CSS file -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Include any necessary fonts or icons -->
+    <!-- Include fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto">
     <!--Favicon-->
-    <link rel="icon" type="image/png" href="images/dinero_direct_logo.png"> <!-- PNG for modern browsers -->
-    <link rel="icon" href="images/dinero_direct_logo.ico" type="image/x-icon"> <!-- ICO for older browsers -->
-    <!-- Apple Touch Icon for Safari and iOS -->
+    <link rel="icon" type="image/png" href="images/dinero_direct_logo.png">
+    <link rel="icon" href="images/dinero_direct_logo.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/dinero_direct_logo.png">
     <!-- Meta description for SEO -->
-    <meta name="description" content="Dinero Direct is your home for easy international money transactions. Whether you want to send a little something to la vieja or for business purposes, we at Dinero Direct commit ourselves to making your experience a simple one!">
+    <meta name="description" content="Dinero Direct is your home for easy international money transactions.">
+    
+    <!-- CSS Styles -->
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #e8f5e9; /* Soft pastel green background */
+            color: #2e7d32; /* Dark green text */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* General Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #81c784; /* Light green for header */
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f1f8e9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #a5d6a7; /* Softer green */
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #388e3c;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.3em;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #2e7d32;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .services h2 {
+            text-align: center;
+            color: #388e3c;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        /* Service grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f8e9;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-item h3 {
+            font-size: 1.8em;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #c8e6c9; /* Light pastel green */
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .about h2 {
+            font-size: 2em;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .about-text {
+            font-size: 1.2em;
+            color: #388e3c;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #81c784;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1, .hero h2, .services h2, .about h2 {
+                font-size: 1.8em;
+            }
+
+            .hero p, .about-text {
+                font-size: 1.1em;
+            }
+
+            .service-item h3 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="container">
+            <img src="images/dinero_direct_logo.png" alt="Logo" class="logo"> 
             <h1>Dinero Direct</h1>
             <nav>
                 <ul>
@@ -32,41 +235,40 @@
 
     <!-- Main Content Section -->
     <main>
-        <!-- Section 1: Hero Banner or Intro -->
+        <!-- Hero Section -->
         <section id="home" class="hero">
             <h2>Welcome to the community</h2>
             <p>At Dinero Direct, we believe in the power of financial freedom to transform lives.</p>
             <a href="#about" class="btn">Learn More</a>
         </section>
 
-        <!-- Section 2: Services or Features -->
+        <!-- Services Section -->
         <section id="services" class="services">
             <h2>Our Services</h2>
-            <div class="service-item">
-                <h3>Service 1</h3>
-                <p>Details about Service 1.</p>
-                <a href="service1.html" class="btn">Learn More</a> <!-- Link to Service 1 -->
-             </div>
-             <div class="service-item">
-                <h3>Service 2</h3>
-                <p>Details about Service 2.</p>
-                <a href="service2.html" class="btn">Learn More</a> <!-- Link to Service 2 -->
-             </div>
-             <div class="service-item">
-                <h3>Contact the Team</h3>
-                <p>Details about Contact.</p>
-                <a href="Contact_Us.html" class="btn">Learn More</a> <!-- Link to Contact Us -->
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Service 1</h3>
+                    <p>Details about Service 1.</p>
+                    <a href="service1.html" class="btn">Learn More</a> <!-- Link to Service 1 -->
+                </div>
+                <div class="service-item">
+                    <h3>Service 2</h3>
+                    <p>Details about Service 2.</p>
+                    <a href="service2.html" class="btn">Learn More</a> <!-- Link to Service 2 -->
+                </div>
+                <div class="service-item">
+                    <h3>Contact the Team</h3>
+                    <p>Details about Contact.</p>
+                    <a href="Contact_Us.html" class="btn">Learn More</a> <!-- Link to Contact Us -->
+                </div>
             </div>
         </section>
-        <!-- Section 3: About Us -->
-            <section id="about" class="about">
-                <h2>About Us</h2>
-                <p class="about-text"> Our mission is to unite the diverse communities of Latin America (LATAM) by providing accessible and 
-                    innovative financial solutions. We understand the unique challenges faced by individuals and businesses
-                    in our region, and we are committed to empowering them with the tools and knowledge they need to achieve financial independence.
-                    By fostering a culture of inclusivity and support, we aim to break down barriers and create opportunities for 
-                    growth and prosperity across LATAM. Join us on this journey towards a brighter, more connected future, where financial freedom is within everyone's reach.</p>
-            </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p class="about-text">Our mission is to unite the diverse communities of Latin America (LATAM) by providing accessible and innovative financial solutions. We understand the unique challenges faced by individuals and businesses in our region, and we are committed to empowering them with the tools and knowledge they need to achieve financial independence.</p>
+        </section>
     </main>
 
     <!-- Footer Section -->

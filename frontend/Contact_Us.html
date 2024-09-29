@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Your Website</title>
     <link rel="stylesheet" href="styles.css">
-    <!--Favicon-->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/dinero_direct_logo.png"> <!-- PNG for modern browsers -->
     <link rel="icon" href="images/dinero_direct_logo.ico" type="image/x-icon"> <!-- ICO for older browsers -->
 </head>
@@ -15,24 +15,38 @@
             <h1>Your Website Name</h1>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="service1.html">Service 1</a></li>
-                    <li><a href="service2.html">Service 2</a></li>
-                    <li><a href="Contact_Us.html">Contact Us</a></li>
+                    <li><a href="index.html" class="btn">Home</a></li>
+                    <li><a href="service1.html" class="btn">Service 1</a></li>
+                    <li><a href="service2.html" class="btn">Service 2</a></li>
+                    <li><a href="Contact_Us.html" class="btn active">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section>
+        <section class="contact-section">
             <h2>Contact Us</h2>
-            <p>Details about Contact go here...</p>
+            <p>If you have any questions, feel free to reach out to us using the form below:</p>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required placeholder="Your Name">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="Your Email">
+
+                <label for="message">Message:</label>
+                <textarea id="message" required placeholder="Your Message" rows="5"></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 </html>

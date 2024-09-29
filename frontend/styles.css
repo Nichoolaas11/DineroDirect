@@ -13,87 +13,86 @@ body, html {
 
 /* Container */
 .container {
-    max-width: 800px; /* Set the maximum width of the container */
+    max-width: 1000px; /* Increased max width for a spacious feel */
     margin: 50px auto; /* Center the container */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow for more contrast */
 }
 
-/* Section styles to separate comparison and monitoring sections */
+/* Section Styles */
 .section {
-    margin-bottom: 40px;
+    margin-bottom: 50px; /* Larger margin between sections */
 }
 
-/* Heading styles */
+/* Headings */
 h1, h2 {
     text-align: center;
-    color: #333;
+    color: #2f4f4a; /* Softer, darker green for headings */
+    letter-spacing: 1px; /* Added spacing for elegance */
 }
 
-/* Label styles for form inputs */
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+/* Label styles */
 label {
     display: inline-block;
-    width: 150px; /* Set label width for alignment */
-    margin-top: 10px;
+    width: 180px; /* Wider labels for better spacing */
+    margin-top: 15px;
     color: #333;
+    font-weight: bold; /* Bolder labels for clarity */
 }
 
-/* Input field styles */
+/* Input fields */
 input {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: calc(100% - 160px); /* Make inputs take up the remaining space next to labels */
+    margin-bottom: 15px;
+    padding: 12px;
+    width: calc(100% - 190px); /* Adjusted width to match new label size */
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #7bbf91; /* Green border on focus */
 }
 
 /* Button styles */
 button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 16px;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Slight enlarge on hover */
 }
 
-/* Result display box styles */
+/* Result box */
 .result {
-    padding: 15px;
+    padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     margin-top: 20px;
     color: #333;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for results */
 }
 
-/* Additional form and result separation for visual clarity */
-hr {
-    margin: 30px 0;
-    border: 0;
-    border-top: 1px solid #ccc;
-}
-
-/* Optional additional styling for background */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Optional dark overlay for better text visibility */
-    z-index: -1;
-}
-
-/* Ensure input elements align correctly within the forms */
+/* Form layout */
 form {
     display: flex;
     flex-wrap: wrap;
@@ -101,35 +100,28 @@ form {
     justify-content: space-between;
 }
 
-/* Adjust input and button widths to fit within the form */
-input[type="text"] {
+/* Inputs and button alignment */
+input[type="text"], input[type="email"] {
     flex: 1 1 auto;
-    margin: 5px;
+    margin: 10px 5px;
 }
 
 button {
     flex: 0 1 auto;
-}
-
-/* Style the form and result container to ensure proper spacing */
-form, .result {
-    margin-bottom: 20px;
-}
-
-/* Improve the overall layout of the form and its elements */
-form label, form input, form button {
     margin: 10px 5px;
 }
 
-/* Hero Section for Index Page */
+/* Hero Section */
 .hero {
-    background-color: #7bbf91; /* Soft green section */
-    padding: 5px 0;
-    border-radius: 10px;
+    background-color: rgba(123, 191, 145, 0.9); /* Transparent green background */
+    padding: 50px 0;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .hero h2 {
-    font-size: 36px;
+    font-size: 40px;
     color: #2f4f4a;
 }
 
@@ -146,21 +138,21 @@ form label, form input, form button {
     display: inline-block;
     background-color: #7bbf91; /* Soft pastel green */
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
+    font-size: 18px; /* Increased button font size */
+    border-radius: 6px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
     background-color: #5ba87c; /* Darker green on hover */
-    transform: scale(1.05); /* Slight enlarge on hover */
+    transform: scale(1.1); /* More noticeable enlarge on hover */
 }
 
 /* Footer */
 footer {
-    background-color: #b8e4c9; /* Same pastel green as header */
+    background-color: #b8e4c9;
     padding: 20px;
     text-align: center;
     border-top: 2px solid #a1d1b7;
@@ -169,9 +161,10 @@ footer {
 footer p {
     color: #2f4f4f;
     font-size: 14px;
+    margin: 0;
 }
 
-/* Preloader Style */
+/* Preloader */
 #preloader {
     position: fixed;
     width: 100%;
@@ -184,28 +177,28 @@ footer p {
 }
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #5ba87c; /* Blue */
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #5ba87c;
     border-radius: 50%;
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
 }
 
-/* Keyframes for spinning animation */
+/* Keyframes for loader animation */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* Specific Styles for Service Pages */
+/* Service Card */
 .service-item {
     display: inline-block;
     width: 30%;
-    background-color: #e0f5e9; /* Soft green card background */
+    background-color: #e0f5e9;
     margin: 20px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
@@ -218,57 +211,37 @@ footer p {
 
 .service-item h3 {
     color: #2f4f4f;
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 26px;
+    margin-bottom: 15px;
 }
 
 .service-item p {
-    font-size: 16px;
+    font-size: 18px;
     color: #555;
     margin-bottom: 20px;
 }
 
-.service-card {
-    display: inline-block;
-    width: 30%;
-    background-color: #e0f5e9; /* Soft green card background */
-    margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
+.logo {
+    top: 20px; /* Adjust vertical positioning */
+    left: 10px; /* Adjust horizontal positioning */
+    max-width: 150px; /* Set a max width for the logo */
+    max-height: 150px; /* Set a max height for the logo */
+    position: absolute;
+    object-fit: contain; /* Ensure the logo scales correctly */
 }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-item {
+        width: 90%; /* Make service cards take up more space on smaller screens */
+        margin-bottom: 30px;
+    }
 
-.service-card:hover {
-    transform: translateY(-10px); /* Slight lift on hover */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
+    .hero h2 {
+        font-size: 32px;
+    }
 
-.service-card h3 {
-    color: #2f4f4f;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.service-card p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.service-card .btn {
-    display: inline-block;
-    background-color: #7bbf91; /* Button inside service cards */
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.service-card .btn:hover {
-    background-color: #5ba87c;
-    transform: scale(1.05); /* Slight enlarge on hover */
+    .btn {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
 }
